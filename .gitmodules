@@ -1,0 +1,3 @@
+[submodule "ekutils"]
+	path = ekutils
+	url = https://github.com/wyatt-radkiewicz/ekutils
