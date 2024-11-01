@@ -1,7 +1,6 @@
 from xml.etree import ElementTree
 from xml.etree.ElementTree import Element
 from sys import argv
-import os
 
 class States:
     def __init__(self):
@@ -243,7 +242,7 @@ if len(argv) < 3:
     print('python3 gendfa.py [dfa.jff] "namespace"')
     exit(-1)
 
-FILE_NAME = argv[2] + os.path.basename(argv[1]).split('.')[0]
+FILE_NAME = argv[2]
 
 # Read in XML data
 root = ElementTree.parse(argv[1]).getroot()
