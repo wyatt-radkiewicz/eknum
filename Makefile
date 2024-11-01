@@ -10,7 +10,7 @@ DBG_OBJ	:=$(patsubst %.c,$(DBG_DIR)/%.o,$(SRCS))
 REL_OBJ	:=$(patsubst %.c,$(REL_DIR)/%.o,$(SRCS))
 
 # Environment variables
-CFLAGS	:=$(CFLAGS) -Iekutils/src/ -DEK_USE_TEST=1 -DEK_USE_UTIL=1 -std=gnu99
+CFLAGS	:=$(CFLAGS) -Isrc/ -Iekutils/src/ -DEK_USE_TEST=1 -DEK_USE_UTIL=1 -std=gnu99
 LDFLAGS	:=$(LDFLAGS) -lm
 
 # normal build
