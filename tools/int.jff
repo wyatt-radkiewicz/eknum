@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 6.4.--><structure>
+	<type>fa</type>
+	<automaton>
+		<!--The list of states.-->
+		<state id="0" name="int_accept">
+			<x>54.0</x>
+			<y>80.0</y>
+			<initial/>
+		</state>
+		<state id="1" name="uint_accept">
+			<x>52.0</x>
+			<y>178.0</y>
+		</state>
+		<state id="2" name="neg">
+			<x>54.0</x>
+			<y>17.0</y>
+		</state>
+		<state id="3" name="done">
+			<x>513.0</x>
+			<y>116.0</y>
+			<final/>
+		</state>
+		<state id="4" name="zero">
+			<x>189.0</x>
+			<y>16.0</y>
+		</state>
+		<state id="5" name="digits">
+			<x>195.0</x>
+			<y>175.0</y>
+		</state>
+		<state id="6" name="oct">
+			<x>329.0</x>
+			<y>19.0</y>
+		</state>
+		<state id="7" name="err">
+			<x>513.0</x>
+			<y>361.0</y>
+			<final/>
+		</state>
+		<state id="8" name="octdone">
+			<x>510.0</x>
+			<y>16.0</y>
+			<final/>
+		</state>
+		<state id="9" name="hexstart">
+			<x>265.0</x>
+			<y>194.0</y>
+		</state>
+		<state id="10" name="binstart">
+			<x>264.0</x>
+			<y>292.0</y>
+		</state>
+		<state id="11" name="hexdigits">
+			<x>362.0</x>
+			<y>196.0</y>
+		</state>
+		<state id="12" name="bindigits">
+			<x>363.0</x>
+			<y>292.0</y>
+		</state>
+		<state id="13" name="hexdone">
+			<x>508.0</x>
+			<y>194.0</y>
+			<final/>
+		</state>
+		<state id="14" name="bindone">
+			<x>507.0</x>
+			<y>284.0</y>
+			<final/>
+		</state>
+		<!--The list of transitions.-->
+		<transition>
+			<from>9</from>
+			<to>11</to>
+			<read>0-9,A-F,a-f</read>
+		</transition>
+		<transition>
+			<from>12</from>
+			<to>14</to>
+			<read>*</read>
+		</transition>
+		<transition>
+			<from>6</from>
+			<to>8</to>
+			<read>*</read>
+		</transition>
+		<transition>
+			<from>4</from>
+			<to>6</to>
+			<read>1-7</read>
+		</transition>
+		<transition>
+			<from>4</from>
+			<to>9</to>
+			<read>x</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>5</to>
+			<read>1-9</read>
+		</transition>
+		<transition>
+			<from>11</from>
+			<to>13</to>
+			<read>*</read>
+		</transition>
+		<transition>
+			<from>2</from>
+			<to>4</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>4</from>
+			<to>10</to>
+			<read>b</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>5</to>
+			<read>1-9</read>
+		</transition>
+		<transition>
+			<from>5</from>
+			<to>3</to>
+			<read>*</read>
+		</transition>
+		<transition>
+			<from>4</from>
+			<to>3</to>
+			<read>*</read>
+		</transition>
+		<transition>
+			<from>11</from>
+			<to>11</to>
+			<read>0-9,A-F,a-f</read>
+		</transition>
+		<transition>
+			<from>12</from>
+			<to>12</to>
+			<read>0-1</read>
+		</transition>
+		<transition>
+			<from>10</from>
+			<to>12</to>
+			<read>0-1</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>4</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>2</from>
+			<to>5</to>
+			<read>1-9</read>
+		</transition>
+		<transition>
+			<from>6</from>
+			<to>6</to>
+			<read>0-7</read>
+		</transition>
+		<transition>
+			<from>5</from>
+			<to>5</to>
+			<read>0-9</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>4</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>2</to>
+			<read>-</read>
+		</transition>
+	</automaton>
+</structure>
