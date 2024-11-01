@@ -9,6 +9,16 @@ REL_DIR	:=rel
 DBG_OBJ	:=$(patsubst %.c,$(DBG_DIR)/%.o,$(SRCS))
 REL_OBJ	:=$(patsubst %.c,$(REL_DIR)/%.o,$(SRCS))
 
+# Auto generated files's variables
+TOOL_DIR:=tools
+AUTO_DIR:=src/autogen
+AUTO_GEN:=$(addprefix $(AUTO_DIR)/,tables.h dbldfa.h intdfa.h)
+$(eval $(shell\
+if [ ! -d "$(AUTO_DIR)" ]; then\
+	mkdir -p $(AUTO_DIR);\
+	touch -d "1979-12-1T06:00:00" $(AUTO_GEN);\
+fi))
+
 # Environment variables
 CFLAGS	:=$(CFLAGS) -Isrc/ -Iekutils/src/ -DEK_USE_TEST=1 -DEK_USE_UTIL=1 -std=gnu99
 LDFLAGS	:=$(LDFLAGS) -lm
@@ -30,6 +40,14 @@ rel: $(REL_DIR)/test
 $(REL_DIR)/test: $(REL_OBJ)
 	$(CC) $(LDFLAGS) $^ -o $@
 
+# Rules for auto-generated files
+$(AUTO_DIR)/tables.h: $(TOOL_DIR)/scripts/gentbl.py
+	python3 $< -d > $@
+$(AUTO_DIR)/intdfa.h: $(TOOL_DIR)/scripts/gendfa.py $(TOOL_DIR)/src/int.jff
+	python3 $< $(word 2,$^) "intdfa" "int" > $@
+$(AUTO_DIR)/dbldfa.h: $(TOOL_DIR)/scripts/gendfa.py $(TOOL_DIR)/src/dbl.jff
+	python3 $< $(word 2,$^) "dbldfa" "dbl" > $@
+
 # Remember that when this call is evaluated, it is expanded TWICE!
 define COMPILE
 $(1)/$(dir $(3))$(2)
@@ -44,5 +62,5 @@ $(foreach src,$(SRCS),$(eval $(call COMPILE,$(REL_DIR),$(shell $(CC) $(CFLAGS) -
 # Clean the project directory
 .PHONY: clean
 clean:
-	rm -rf $(DBG_DIR) $(REL_DIR)
+	rm -rf $(DBG_DIR) $(REL_DIR) $(AUTO_DIR)
 
